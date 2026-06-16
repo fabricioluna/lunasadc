@@ -5,8 +5,6 @@ import {
   ShieldAlert, Pill, Search, AlertTriangle, FileText,
   ClipboardCheck, Syringe, Scissors, Plus, Trash2, Calendar, Dna, Info, Clock, Loader2, Printer, CheckCircle2, ShieldCheck, ShieldX, DatabaseZap, BookOpen, Library, X
 } from 'lucide-react';
-import logoFms from '../assets/logo-fms.png';
-import logoLiga from '../assets/logo-liga.png';
 import { salvarEvolucaoDb, listarEvolucoesDb } from '../services/firebase';
 import { analisarPrescricaoIA } from '../services/ai';
 
@@ -14,15 +12,14 @@ import { analisarPrescricaoIA } from '../services/ai';
 // COMPONENTES DE INTERFACE (Reutilizáveis)
 // ==========================================
 const HeaderTop = ({ onVoltar, onHome, idEvolucao }) => (
-  <header className="bg-white p-3 shadow-sm border-b-4 border-green-600 sticky top-0 z-50 flex justify-between items-center">
+  <header className="bg-white p-3 shadow-sm border-b-4 border-blue-600 sticky top-0 z-50 flex justify-between items-center">
     <div className="flex items-center gap-3">
       <button onClick={onVoltar} className="text-gray-400 hover:text-blue-600 transition-colors">
         <ArrowLeft size={24} />
       </button>
-      <div onClick={onHome} className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-        <img src={logoFms} alt="FMS" className="h-8 object-contain" />
-        <div className="h-6 w-px bg-gray-300"></div>
-        <img src={logoLiga} alt="Liga" className="h-8 object-contain" />
+      <div onClick={onHome} className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+        {/* Nova logo Luna Medclass puxada da pasta public */}
+        <img src="/logo.png" alt="Luna Medclass" className="h-8 object-contain" />
       </div>
     </div>
     <div className="text-right">
@@ -196,7 +193,6 @@ export default function EvolucaoClinica({ pacienteSelecionado, onVoltar, onFinal
 
   const formatarData = (dataString) => dataString ? dataString.split('-').reverse().join('/') : null;
 
-  // ATUALIZADO: Agora enviamos o historicoReal e a anamnese digitada para a IA ler
   const handleAnalisarRisco = async () => {
     if (listaPrescricao.length === 0) return alert("Adicione pelo menos um fármaco à lista.");
     setAnalisando(true); setResultadoAnalise(null);
@@ -210,7 +206,8 @@ export default function EvolucaoClinica({ pacienteSelecionado, onVoltar, onFinal
     const dados = {
       idEvolucao, dataAtendimento, anamnese, sinaisVitais: { peso, pa, fc, temp, fr },
       patologias, cirurgias, medicacoes, exames, vacinas: vacinasAplicadas, genetica,
-      medico: "Dra. Gleyka Santos", timestamp: new Date().toISOString()
+      medico: "Dr. Luna", // Alterado aqui
+      timestamp: new Date().toISOString()
     };
     const ok = await salvarEvolucaoDb(pacienteAtual.id, dados);
     setSalvando(false);
@@ -236,7 +233,9 @@ export default function EvolucaoClinica({ pacienteSelecionado, onVoltar, onFinal
     const textoEvolucaoAutomatica = `EVOLUÇÃO CLÍNICA - ${prefixo}:\n\nFármacos prescritos:\n${listaFormatada}\n\n[SADC] CHECAGEM DE SEGURANÇA CONCLUÍDA:\nRisco Estratificado: ${resultadoAnalise?.nivelRisco || 'N/A'}\nParecer do Sistema: ${resultadoAnalise?.resumoClinico || 'N/A'}\n\nLiteratura de Apoio Sugerida:\n${textoReferencias}`;
     
     const dados = {
-      idEvolucao: `PR-2026-${Math.floor(1000 + Math.random() * 9000)}`, dataAtendimento, anamnese: textoEvolucaoAutomatica, prescricoesMultiplas: listaPrescricao, medico: "Dra. Gleyka Santos", timestamp: new Date().toISOString()
+      idEvolucao: `PR-2026-${Math.floor(1000 + Math.random() * 9000)}`, dataAtendimento, anamnese: textoEvolucaoAutomatica, prescricoesMultiplas: listaPrescricao, 
+      medico: "Dr. Luna", // Alterado aqui
+      timestamp: new Date().toISOString()
     };
     
     const ok = await salvarEvolucaoDb(pacienteAtual.id, dados);
