@@ -1,8 +1,6 @@
 // src/pages/Dashboard.jsx
 import React from 'react';
 import { Users, Dna, Calculator, ArrowLeft, LayoutDashboard, Activity } from 'lucide-react';
-import logoFms from '../assets/logo-fms.png';
-import logoLiga from '../assets/logo-liga.png';
 
 export default function Dashboard({ onAbrirProntuario, onVoltar, onHome }) {
   return (
@@ -15,15 +13,13 @@ export default function Dashboard({ onAbrirProntuario, onVoltar, onHome }) {
             <ArrowLeft size={24} />
           </button>
           <div onClick={onHome} className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity" title="Voltar ao Início">
-            <img src={logoFms} alt="FMS" className="h-8 object-contain" />
-            <div className="h-6 w-px bg-gray-300"></div>
-            <img src={logoLiga} alt="Liga" className="h-8 object-contain" />
+            <img src="/logo.png" alt="Luna Medclass" className="h-8 object-contain" />
           </div>
         </div>
         
-        {/* Informações da Médica Assistente */}
+        {/* Informações do Médico Assistente */}
         <div className="text-right hidden sm:block">
-          <p className="text-sm font-bold text-gray-800">Dra. Gleyka Santos</p>
+          <p className="text-sm font-bold text-gray-800">Dr. Luna</p>
           <p className="text-[10px] text-[var(--color-fms-verde)] font-bold uppercase tracking-wider">CRM-PE Ativo</p>
         </div>
       </header>
@@ -33,8 +29,8 @@ export default function Dashboard({ onAbrirProntuario, onVoltar, onHome }) {
         {/* Painel de Boas-Vindas */}
         <div className="bg-[var(--color-fms-azul)] rounded-2xl p-6 text-white shadow-md mb-8 relative overflow-hidden">
           <div className="relative z-10">
-            <h2 className="text-2xl font-extrabold mb-1">Olá, Dra. Gleyka!</h2>
-            <p className="text-sm text-blue-200">Plantão Ativo • Hospital Mestre Vitalino</p>
+            <h2 className="text-2xl font-extrabold mb-1">Olá, Dr. Luna!</h2>
+            <p className="text-sm text-blue-200">Plantão Ativo • Luna Medclass</p>
           </div>
           <Activity size={100} className="absolute -right-4 -bottom-6 text-blue-800 opacity-50" />
         </div>
@@ -94,9 +90,7 @@ export default function Dashboard({ onAbrirProntuario, onVoltar, onHome }) {
       <footer className="bg-white border-t border-gray-200 py-6 mt-auto">
         <div className="flex flex-col items-center gap-3">
           <div className="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity" onClick={onHome}>
-            <img src={logoFms} alt="FMS" className="h-6 object-contain grayscale opacity-60" />
-            <div className="h-4 w-px bg-gray-300"></div>
-            <img src={logoLiga} alt="Liga" className="h-6 object-contain grayscale opacity-60" />
+            <img src="/logo.png" alt="Luna Medclass" className="h-6 object-contain grayscale opacity-60" />
           </div>
           <p className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">
             Desenvolvido por <span className="text-[var(--color-fms-azul)] font-black">Fabrício Luna</span>

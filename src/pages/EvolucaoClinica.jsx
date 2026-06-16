@@ -18,7 +18,6 @@ const HeaderTop = ({ onVoltar, onHome, idEvolucao }) => (
         <ArrowLeft size={24} />
       </button>
       <div onClick={onHome} className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
-        {/* Nova logo Luna Medclass puxada da pasta public */}
         <img src="/logo.png" alt="Luna Medclass" className="h-8 object-contain" />
       </div>
     </div>
@@ -206,7 +205,7 @@ export default function EvolucaoClinica({ pacienteSelecionado, onVoltar, onFinal
     const dados = {
       idEvolucao, dataAtendimento, anamnese, sinaisVitais: { peso, pa, fc, temp, fr },
       patologias, cirurgias, medicacoes, exames, vacinas: vacinasAplicadas, genetica,
-      medico: "Dr. Luna", // Alterado aqui
+      medico: "Dr. Luna",
       timestamp: new Date().toISOString()
     };
     const ok = await salvarEvolucaoDb(pacienteAtual.id, dados);
@@ -234,7 +233,7 @@ export default function EvolucaoClinica({ pacienteSelecionado, onVoltar, onFinal
     
     const dados = {
       idEvolucao: `PR-2026-${Math.floor(1000 + Math.random() * 9000)}`, dataAtendimento, anamnese: textoEvolucaoAutomatica, prescricoesMultiplas: listaPrescricao, 
-      medico: "Dr. Luna", // Alterado aqui
+      medico: "Dr. Luna",
       timestamp: new Date().toISOString()
     };
     
